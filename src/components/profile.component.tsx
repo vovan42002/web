@@ -3,6 +3,8 @@ import { Navigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
 import IUser from "../types/user.type";
 
+import { isTokenExpired } from "../common/TokenVerify";
+
 type Props = {};
 
 type State = {
@@ -24,7 +26,12 @@ export default class Profile extends Component<Props, State> {
   componentDidMount() {
     const currentUser = AuthService.getCurrentUser();
 
-    if (!currentUser) this.setState({ redirect: "/home" });
+    if (!currentUser) {
+      this.setState({ redirect: "/home" });
+    }
+    if (!isTokenExpired(currentUser.access_token)) {
+      this.setState({ redirect: "/login" })
+    }
     this.setState({ currentUser: currentUser, userReady: true })
   }
 
@@ -37,6 +44,7 @@ export default class Profile extends Component<Props, State> {
 
     return (
       <div className="container">
+
       </div>
     );
   }
