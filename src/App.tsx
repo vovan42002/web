@@ -12,6 +12,7 @@ import Home from "./components/home.component";
 import Profile from "./components/profile.component";
 
 import EventBus from "./common/EventBus";
+import Sensors from "./components/sensors.component";
 
 type Props = {};
 
@@ -59,11 +60,12 @@ class App extends Component<Props, State> {
       <div>
         <div className="container mt-3">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Login />} />
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/sensors" element={<Sensors />} />
           </Routes>
         </div>
 
